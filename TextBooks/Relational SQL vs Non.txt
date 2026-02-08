@@ -1,0 +1,71 @@
+Relational (SQL) vs. Non-Relational (NoSQL)
+The first step is helping your audience visualize how data is stored.
+
+Relational Databases (SQL)
+Structure: Data is stored in tables with fixed rows and columns.
+
+Relationships: They use "Foreign Keys" to link tables (e.g., a User table linked to an Orders table).
+
+Strictness: You must define a schema before you can add data.
+
+Examples: PostgreSQL, MySQL, Oracle.
+
+Non-Relational Databases (NoSQL)
+Structure: Data is often stored as JSON-like documents, key-value pairs, or graphs.
+
+Flexibility: Every "record" can have different fields. There is no rigid schema.
+
+Scaling: Designed to scale horizontally (adding more servers) very easily.
+
+Examples: MongoDB (Document), Redis (Key-Value), Cassandra (Column
+
+
+he Class Debate: PostgreSQL vs. MongoDB
+In your class, MongoDB is likely popular because it feels "easy"—you just throw JSON at it. PostgreSQL (SQL) feels "harder" because you have to define everything upfront.
+
+PostgreSQL (Relational): Best when data consistency and relationships are key. If you are building a bank or an e-commerce site where an order must belong to a user, use Postgres.
+
+MongoDB (Non-Relational): Best for speed and flexibility. If you are building a social media feed where every post might have different types of data (video, text, poll), use Mongo.
+
+
+
+The Big Question: Are Annotations the Same?
+No, they are different! This is a very important point for your slide.
+
+Spring Boot uses different "Drivers" (Libraries) for different databases.
+
+If you use SQL, you use JPA (Java Persistence API) annotations.
+
+If you use MongoDB, you use Spring Data MongoDB annotations.
+
+
+Deep Dive: Explaining the Annotations
+For your presentation, you can explain that annotations are "Instructions for Spring."
+
+SQL Annotations (The "Strict" Way)
+@Entity: Tells Spring: "Hey, this Java class is actually a table in my database."
+
+@Id: Tells Spring: "This specific field is the unique fingerprint for this row."
+
+@GeneratedValue: Tells the database: "Don't worry about the ID number; you create it automatically (1, 2, 3...)."
+
+@Column: Used to give specific rules, like @Column(nullable = false) which means this field cannot be empty.
+
+Relationship Annotations (Intertwining)
+This is where you explain how models connect:
+
+@ManyToOne: Use this when many "Posts" belong to one "User." In the database, Spring will automatically create a column for the user_id.
+
+@JoinColumn: This is how you tell Spring exactly what to call that ID column (e.g., name = "author_id").
+
+
+Methods for Managing your Collections
+Once you have your @Entity or @Document set up, you use a Repository. Here are the methods you can mention that work for both:
+
+save(): Takes your object and writes it to the table/collection.
+
+findById(): Searches for that specific ID you annotated with @Id.
+
+existsById(): A quick check to see if that ID is already taken.
+
+Would you like me to create a side-by-side visual comparison of a "User" model in SQL vs. a "User" model in MongoDB so you can show the different annotations?
